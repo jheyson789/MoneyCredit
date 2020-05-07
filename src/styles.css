@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+
+.main-container{
+  margin-top: 40px;
+}
+@font-face{
+  font-family: "Fredoka";
+  src: url("assets/css/fonts/FredokaOne-Regular.ttf");
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+header{
+  font-family: 'Fredoka';
+}
+a {
+  color: #fff !important;
+  font-size: 20px;
+  font-stretch: extra-expanded;
+}
+ul .nav-item{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+li .nav-link:hover{
+  border-bottom: 1px solid #fff;
+  transform: scale(1.1);
+  transition: all .3s;
+}
+input,select{
+  border-radius: 12px !important;
+  outline: none !important;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none !important; 
+  margin: 0 !important; 
+}
+input[type = "search"]:focus{
+  border-color: #28a745!important;
+  outline: none !important ;
+}
+input[type= "date"]{
+  border-color: #ced4da;
+  border-width: 1px;
+}
+input[type="date"]:focus{
+  border:none;
+  border: 1px solid #28a745;
+  outline: none !important;
+}
+input[type = "search"]{
+  border-color: #fff;
+  border-width: 1px;
+  border-style: double;
+  border-radius: 10px;
+  width: 300px;
+}
+button {
+  border-radius: 25px !important;
+}

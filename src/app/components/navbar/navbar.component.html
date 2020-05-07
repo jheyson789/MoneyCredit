@@ -1,0 +1,28 @@
+<div class=" text-center text-uppercase" style="background-color: #98ee99;">
+    <div class="col p-1">{{ fecha | date : 'longDate' }}</div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light text-uppercase text-center" style="background-color: #63ccff;">
+    <div class="container">
+        <a class="navbar-brand" href="#">Money Credit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item" routerLinkActive="actived">
+                    <a class="nav-link" routerLink="inicio">Inicio</a>
+                </li>
+                <li class="nav-item" routerLinkActive="actived">
+                    <a class="nav-link" routerLink="clientes">Clientes</a>
+                </li>
+                <li class="nav-item" routerLinkActive="actived">
+                    <a class="nav-link" routerLink="prestamos"
+                    >Prestamos</a>
+                </li>
+                <li class="nav-item" routerLinkActive="actived">
+                    <a class="nav-link" routerLink="calculadora">Calculadoras</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

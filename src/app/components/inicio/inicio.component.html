@@ -1,0 +1,20 @@
+<div class="container mt-3">
+  <div class="card mt-2" *ngFor="let dato of datos">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-6">
+          <p>{{ dato.nombre | uppercase }} {{ dato.carnetIdentidad }}</p>
+        </div>
+        <div class="col-6 text-right">
+          <p>{{ dato.fechaVencimiento | date: "dd/MMM/yyyy" }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">celular: {{ dato.celular }}   -  telefono: {{ dato.telefono }} </h3>
+      <p class="card-text">Capital: {{ dato.capital }} Bs.  - interes: {{ dato.interes }} % - seguro: {{ dato.seguro }} %</p>
+      <p class="card-text"><small class="text-muted">{{ dato.fechaActual | date: "dd/MMM/yyyy" }}</small></p>
+      <a href="#" class="btn btn-success">editar</a>
+    </div>
+  </div>
+</div>

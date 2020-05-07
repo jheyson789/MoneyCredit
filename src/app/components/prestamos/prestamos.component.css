@@ -1,0 +1,14 @@
+.datosObjetos div input{
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.datosObjetos div input:focus{
+  box-shadow: none;
+  box-shadow: 0 6px 5px rgba(204, 204, 204, .5);
+}
+input[type= "datetime-local"]{
+  border-color: #ced4da;
+  border-width: 1px;
+}

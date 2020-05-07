@@ -1,0 +1,209 @@
+<div class="container mt-3 mb-5 p-4" style="background-color: #fafafa;">
+  <h1>Nuevo Cliente y Contrato</h1>
+  <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+    <div class="form-row">
+      <div class="col-md-5 mb-3">
+        <label>Nombre</label>
+        <input type="text" class="form-control" placeholder="Nombre Completo" formControlName="nombre">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Numero de Carnet</label>
+        <input type="text" class="form-control" placeholder="Numero de carnet de identidad" formControlName="carnetIdentidad">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label>Expedito</label>
+        <select formControlName="extension" class="form-control">
+          <option value="cb">CB - Cochabamba</option>
+          <option value="sc">SC - Santa Cruz</option>
+          <option value="lp">LP - La paz</option>
+          <option value="or">OR - Oruro</option>
+          <option value="pt">PT - Potosi</option>
+          <option value="bn">BN - Beni</option>
+          <option value="tj">TJ - Tarija</option>
+          <option value="ch">CH - Chuquisaca</option>
+          <option value="pa">PA - Pando</option>
+        </select>
+      </div>
+    </div> <!-- form-row primera fila del formulario -->
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <label>Teléfono</label>
+        <input type="tel" class="form-control" placeholder="Telefono fijo" formControlName="telefono">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label>Celular</label>
+        <input type="tel" class="form-control" placeholder="Numero de Celular" formControlName="celular">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label>Fecha del contrato</label>
+        <input type="text" class="form-control" formControlName="fechaActual" readonly>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label>Fecha de vencimiento</label>
+        <input type="text" class="form-control" formControlName="fechaVencimiento" readonly>
+      </div>
+    </div> <!-- form-row segunda fila del formulario -->
+    <div class="form-row">
+      
+      <div class="col-md-2 mb-3">
+        <label>Capital en Bs</label>
+        <input type="number" class="form-control" placeholder="Monto de Dinero" formControlName="capital">
+      </div>
+      <div class="col-md-2 mb-3">
+        <label>Interes</label>
+        <input type="number" class="form-control" placeholder="Interes" formControlName="interes">
+      </div>
+      <div class="col-md-2 mb-3">
+        <label>Seguro</label>
+        <input type="number" class="form-control" placeholder="Seguro" formControlName="seguro">
+      </div>
+      <div class="col-md-2 mb-3">
+        <label>Codigo Cliente</label>
+        <input type="text" class="form-control" placeholder="Cod. Cliente" formControlName="codigoCliente">
+      </div>
+      <div class="col-md-2 mb-3">
+        <label>Codigo Contrato</label>
+        <input type="text" class="form-control" placeholder="Cod. Contrato" formControlName="codigoContrato">
+      </div>
+    </div> <!-- form-row Tercera fila del formulario -->
+    <div class="form-row">
+      
+    </div> <!-- form-row cuarta fila del formulario -->
+    <div class="row">
+      <div class="col">
+        <table class="table">
+            <thead class="thead-light text-center">
+              <tr>
+                <th scope="col">Numero</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Kl</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Observaciones</th>
+              </tr>
+            </thead>
+            <tbody formArrayName="prendas">
+              <tr *ngFor="let control of prendas.controls; let i=index" [formGroupName]="i">
+                <th scope="row">{{i+1}}</th>
+                <td>
+                  <!-- <input type="text" class="form-control" placeholder="nombre y datos de la prenda" formControlName="descripcion"> -->
+                  <textarea cols="30" class="form-control" formControlName="descripcion"></textarea>
+                </td>
+                <td>
+                  <input type="text" class="form-control" formControlName="kilate">
+                </td>
+                <td>
+                  <input type="text" class="form-control" formControlName="peso">
+                </td>
+                <td>
+                  <!-- <input type="text" class="form-control" placeholder="Fallas, rajaduras, faltantes, etc...." formControlName="observacion"> -->
+                  <textarea cols="30" class="form-control" formControlName="observacion"></textarea>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary btn-block mt-2" (click)="agregarPrenda()">
+          <i class="fa fa-folder-plus"></i>
+          Agregar Prenda
+        </button>
+        <button type="button" class="btn btn-danger mt-2" (click)="quitarPrenda()">
+          quitar
+        </button>
+      </div>
+    </div>
+      <!-- fin del contenido de la tabla de prendas -->
+      <button class="btn btn-success btn-lg mt-3" type="submit">
+        <i class="fa fa-save"></i>
+        Guardar
+      </button>
+      <button *ngIf="genPdf" class="btn btn-info ml-3 mt-3" type="button" (click)="abrirPDF()">
+      <i class="fa fa-file-pdf"></i>
+      Generar PDF
+    </button>
+  </form>
+</div>
+
+<hr>
+<pre>
+  {{prestamos | json}}
+ 
+</pre>
+
+<div class="noVer">
+  <div class="container" id="pruebapdf">
+    <div class="row">
+      <div class="col-6"><img src="../../../assets/img/logoC.png" alt="Logotipo de la empresa" class="img-fluid"></div>
+      <div class="col-6 text-uppercase">comprobante otorgación de crédito</div>
+    </div>
+  
+    <table class="table text-center  mb-5 table-bordered table-success table-striped">
+      <thead>
+        <tr>
+          <th>Lugar: CBBA</th>
+          <th>Fecha : {{ fechaA | date:'dd/MM/yyyy' }} </th>
+          <th>Contrato: {{ forma.value.codigoContrato }} </th>
+          <th>Plazo: 30 Días</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cliente: {{ forma.value.codigoCliente }} </td>
+          <td colspan="2">Nombre: {{ forma.value.nombre | uppercase }} </td>
+          <td>CI: {{ forma.value.carnetIdentidad }} {{ forma.value.extension }} </td>
+        </tr>
+        <tr>
+          <td>Moneda : bolivianos</td>
+          <td colspan="3">Fecha de vencimiento : {{ restar() | date:'dd/MM/yyyy' }} </td>
+        </tr>
+        <tr>
+          <td>Capital prestado: {{ forma.value.capital }} </td>
+          <td>Tasa: {{ forma.value.interes }} %</td>
+          <td>Seguro: {{ forma.value.seguro }} %</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  
+  
+    <table class="table mt-5 table-bordered mb-5 text-center">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col" colspan="2">Descripcion</th>
+          <th scope="col">Kl</th>
+          <th scope="col">Peso</th>
+          <th scope="col" colspan="2">Observaciones</th>
+        </tr>
+      </thead>
+      <tbody id="datosPrendas">
+        <tr *ngFor="let item of forma.value.prendas">
+          <td colspan="2">{{item.descripcion}}</td>
+          <td>{{item.kilate}}</td>
+          <td>{{item.peso}}</td>
+          <td colspan="2">{{item.observacion}}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="row text-center mt-5">
+      <div class="col-5 mt-5">
+        <div class="firma">Representante <small>(acreedor)</small></div>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-5 mt-5">
+        <div class="firma">Cliente <small>(deudor)</small></div>
+        {{ forma.value.nombre | uppercase }} - 
+        {{ forma.value.carnetIdentidad }} {{ forma.value.extension }}
+      </div>
+    </div><!-- firmas de conformidad -->
+  
+    <div class="row text-center mt-5">
+      <div class="col-3"></div>
+      <div class="col-5 mt-5">
+        <div class="firma">Recibí Conforme</div>
+        <small>(devolución de prenda(s))</small>
+      </div>
+    </div>
+
+    <!-- Segunda hoja para impresion de copia -->
+
+
+</div><!-- contenedor de la clase display: none -->
