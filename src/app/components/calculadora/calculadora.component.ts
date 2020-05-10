@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-calculadora',
@@ -11,6 +12,7 @@ export class CalculadoraComponent implements OnInit {
   calcuJoyas: FormGroup;
   calcuInteres: FormGroup;
   calcuDias: FormGroup;
+  
 
   constructor(
     private fb: FormBuilder
@@ -35,8 +37,19 @@ export class CalculadoraComponent implements OnInit {
       monto: ['', Validators.required],
       interes: [3, Validators.required],
       seguro: [3.5, Validators.required],
-      dias:['',Validators.required]
+      dias:['',Validators.required],
+      fechaPrestado: ['']
     })
+  }
+
+  totalDias(fechaPres) {
+    var fechaActual = moment();
+    var fecha = moment(fechaPres);
+    var diferencia = fechaActual.diff(fecha, 'days');
+    // var fecha = new Date();
+    // fecha.setDate(fecha.getDate() + 30);
+    // return fecha;
+    return diferencia;
   }
   
   intereSeguro( ) {
