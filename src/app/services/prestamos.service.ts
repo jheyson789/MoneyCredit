@@ -29,5 +29,9 @@ export class PrestamosService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.get(this.url+'/mostrar-prestamo/'+id, {headers: headers});
   }
+  eliminarPrestamo(id: String): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this._http.delete(this.url+'/eliminar-prestamo/'+id, {headers: headers});
+  }
 
 }
