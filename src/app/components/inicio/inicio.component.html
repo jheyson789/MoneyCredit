@@ -1,5 +1,7 @@
 <div class="container mt-3">
-  <div class="card mt-2" *ngFor="let dato of datos; let i = index">
+  <!-- <div *ngIf="datos.length == 0" class="alert alert-warning">No existen prestamos en la base de datos</div> -->
+  <div class="card mt-2 animate__animated animate__fadeInDown" [ngClass]="{animate__fadeOutLeft: estado}"
+  *ngFor="let dato of datos; let i = index">
     <div class="card-header">
       <div class="row">
         <div class="col-6">

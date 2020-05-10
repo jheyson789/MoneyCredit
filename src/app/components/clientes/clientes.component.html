@@ -83,7 +83,11 @@
             </thead>
             <tbody formArrayName="prendas">
               <tr *ngFor="let control of prendas.controls; let i=index" [formGroupName]="i">
-                <th scope="row">{{i+1}}</th>
+                <th scope="row" class="text-center">{{i+1}} 
+                  <button type="button" class="btn btn-danger mt-2" (click)="quitarPrenda(i)">
+                    quitar
+                  </button>
+                </th>
                 <td>
                   <!-- <input type="text" class="form-control" placeholder="nombre y datos de la prenda" formControlName="descripcion"> -->
                   <textarea cols="30" class="form-control" formControlName="descripcion"></textarea>
@@ -105,9 +109,6 @@
           <i class="fa fa-folder-plus"></i>
           Agregar Prenda
         </button>
-        <button type="button" class="btn btn-danger mt-2" (click)="quitarPrenda()">
-          quitar
-        </button>
       </div>
     </div>
       <!-- fin del contenido de la tabla de prendas -->
@@ -115,7 +116,7 @@
         <i class="fa fa-save"></i>
         Guardar
       </button>
-      <button *ngIf="genPdf" class="btn btn-info ml-3 mt-3" type="button" (click)="abrirPDF()">
+      <button *ngIf="genPdf" class="btn btn-info ml-3 mt-3 animate__fadeInLeft" type="button" (click)="abrirPDF()">
       <i class="fa fa-file-pdf"></i>
       Generar PDF
     </button>

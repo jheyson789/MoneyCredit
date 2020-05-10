@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 // import * as jsPDF from 'jspdf';
 import * as html2pdf from 'html2pdf.js';
 import { PrestamosService } from '../../services/prestamos.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -78,7 +79,31 @@ export class ClientesComponent implements OnInit {
     this.genPdf = true;
     console.log(this.forma.value);
     console.log(this.servicioPrestamo.crearPrestamo(this.forma.value));
-    this.servicioPrestamo.crearPrestamo(this.forma.value).subscribe();
+    Swal.fire({
+      title:'Espere',
+      text: 'Guardando información',
+      icon: 'info',
+      timer: 2000,
+      timerProgressBar: true,
+      allowOutsideClick: false
+    });
+
+    this.servicioPrestamo.crearPrestamo(this.forma.value).subscribe(
+      resp => {
+        Swal.fire({
+          title: this.forma.value.nombre,
+          text: 'Se guardo correctamente',
+          icon: 'success'
+        });
+      },
+      error => {
+        Swal.fire({
+          title:'Error',
+          text: 'Error en la conexión de la base de datos',
+          icon:'error'
+        })
+      }
+    );
 
   }
   agregarPrenda() {
@@ -91,7 +116,7 @@ export class ClientesComponent implements OnInit {
     }));
   }
 
-  quitarPrenda() {
+  quitarPrenda(i: number) {
     const quitar = this.forma.value.prendas;
     quitar.pop();
   }

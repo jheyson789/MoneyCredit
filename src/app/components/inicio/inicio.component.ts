@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
 })
 export class InicioComponent implements OnInit {
 
-  public datos;
+  public datos:[];
+  public estado = false;
 
   constructor(
     private servicioPrestamo : PrestamosService
@@ -25,6 +26,14 @@ export class InicioComponent implements OnInit {
       response => {
         if(response.prestamos) {
           this.datos = response.prestamos;
+        }
+        
+        if( this.datos.length === 0 ) {
+          Swal.fire({
+            icon:'info',
+            title: 'No hay Prestamos',
+            text: `No existen Prestamos en la base de Datos`
+          })
         }
       },
       error => {
@@ -56,6 +65,7 @@ export class InicioComponent implements OnInit {
             'Que tengas un buen día',
             'success'
           )
+          this.estado = true;
         },
         error => {
           Swal.fire({
