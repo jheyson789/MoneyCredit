@@ -11,9 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
-import { PrestamosComponent } from './components/prestamos/prestamos.component';
 import { CalculadoraComponent } from './components/calculadora/calculadora.component';
 import * as jsPDF from 'jspdf';
+import { EditarComponent } from './components/editar/editar.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import * as jsPDF from 'jspdf';
     NavbarComponent,
     InicioComponent,
     ClientesComponent,
-    PrestamosComponent,
-    CalculadoraComponent
+    CalculadoraComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,

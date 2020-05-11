@@ -1,14 +1,13 @@
 <div class="container mt-3">
-  <!-- <div *ngIf="datos.length == 0" class="alert alert-warning">No existen prestamos en la base de datos</div> -->
-  <div class="card mt-2 animate__animated animate__fadeInDown" [ngClass]="{animate__fadeOutLeft: estado}"
-  *ngFor="let dato of datos; let i = index">
+  <div *ngIf="datos.length < 1" class="alert alert-warning">No existen prestamos en la base de datos</div>
+  <div class="card mt-2 animate__animated animate__fadeInLeft" *ngFor="let dato of datos; let i = index">
     <div class="card-header">
       <div class="row">
         <div class="col-6">
-          <p>{{ dato.nombre | uppercase }} {{ dato.carnetIdentidad }}</p>
+          <p class="m-0">{{ dato.nombre | uppercase }} <small>{{ dato.carnetIdentidad + dato.extension }}</small> </p>
         </div>
         <div class="col-6 text-right">
-          <p>{{ dato.fechaVencimiento | date: "dd/MMM/yyyy" }}</p>
+          <p class="m-0">{{ dato.fechaVencimiento | date: "dd/MMM/yyyy" }}</p>
         </div>
       </div>
     </div>
@@ -16,8 +15,8 @@
       <h3 class="card-title">celular: {{ dato.celular }}   -  telefono: {{ dato.telefono }} </h3>
       <p class="card-text">Capital: {{ dato.capital }} Bs.  - interes: {{ dato.interes }} % - seguro: {{ dato.seguro }} %</p>
       <p class="card-text"><small class="text-muted">{{ dato.fechaActual | date: "dd/MMM/yyyy" }}</small></p>
-      <a href="#" class="btn btn-success">Editar</a>
-      <button type="button" (click)="eliminarPrestamo(dato._id, i )" class="btn btn-danger ml-5">Eliminar</button>
+      <button type="button" [routerLink]="['/editar', dato._id]" class="btn btn-success btn-lg">Editar</button>
+      <button type="button" (click)="eliminarPrestamo(dato._id, i )" class="btn btn-danger ml-5 btn-sm">Eliminar</button>
     </div>
   </div>
 </div>

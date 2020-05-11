@@ -10,8 +10,9 @@ import Swal from 'sweetalert2';
 })
 export class InicioComponent implements OnInit {
 
-  public datos:[];
+  public datos = [];
   public estado = false;
+  public eliminar = false;
 
   constructor(
     private servicioPrestamo : PrestamosService
@@ -65,7 +66,7 @@ export class InicioComponent implements OnInit {
             'Que tengas un buen día',
             'success'
           )
-          this.estado = true;
+          this.eliminar = true;
         },
         error => {
           Swal.fire({

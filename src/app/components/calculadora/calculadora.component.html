@@ -1,7 +1,7 @@
 <div class="container mt-3">
 	<!-- <div class="row"> -->
-		<h2>Calculadora de Monto por joyas</h2>
-		<form [formGroup]="calcuJoyas" class="form-row">
+		<h2 class="animate__animated animate__fadeIn">Calculadora de Monto por joyas</h2>
+		<form [formGroup]="calcuJoyas" class="form-row animate__animated animate__fadeInLeft">
 			<div class="col-3 form-group"><!-- inicio de la primera columna -->
 				<label for="peso">Peso</label>
 				<input type="number" class="form-control" placeholder="peso" formControlName="peso">
@@ -24,7 +24,7 @@
       </div><!-- segunda columna -->
       
 		
-			<div class="col-6 form-group">	<!-- inicio de la terecera columna -->
+			<div class="col-6 form-group animate__animated animate__fadeInDown">	<!-- inicio de la terecera columna -->
 				<table class="table text-center">
 					<thead>
 						<tr>
@@ -79,42 +79,42 @@
 		<!-- </div> row principal calculadora de joyas -->
 		<br>
 		<hr>
-		<h2>Calculadora de interes por Día</h2>
+		<h2 class="animate__animated animate__fadeIn">Calculadora de interes por Día</h2>
 		<div class="row mt-2">
-				<div class="col-6">
+				<div class="col-6 animate__animated animate__fadeInLeft">
 					<form [formGroup]="calcuInteres">
-					<div class="form-group row">
-						<label for="montoCom" class="col-2 col-form-label">Monto:</label>
-						<div class="col-10">
-							<input type="number" class="form-control" formControlName="monto">
-						</div>
-						<label for="interesCom" class="col-2 col-form-label mt-2">Interes:</label>
-						<div class="col-4 mt-2">
-							<input type="number" class="form-control" formControlName="interes">
-						</div>
-						<label for="seguroCom" class="col-2 col-form-label mt-2">Seguro:</label>
-						<div class="col-4 mt-2">
-							<input type="number" class="form-control" formControlName="seguro">
-						</div>
-						<label for="diasCom" class="col-2 col-form-label mt-2">Dias:</label>
-						<div class="col-10 mt-2">
-							<input type="number" class="form-control" formControlName="dias">
-						</div>
-						<br>
-						<hr>
-						<label for="fechaPresta" class="col-4 col-form-label mt-5">Fecha Prestado:</label>
-						<div class="col-8 mt-5">
-							<input type="date" class="form-control" formControlName="fechaPrestado">
-						</div>
-					</div>					
-				</form>
-				<label for="DiaTotal">Dias totales:</label>
-				<div class="alert alert-primary">
-					{{ totalDias(calcuInteres.value.fechaPrestado) - 1 }} Días.
-				</div>
+						<div class="form-group row">
+							<label for="montoCom" class="col-2 col-form-label">Monto:</label>
+							<div class="col-10">
+								<input type="number" class="form-control" formControlName="monto">
+							</div>
+							<label for="interesCom" class="col-2 col-form-label mt-2">Interes:</label>
+							<div class="col-4 mt-2">
+								<input type="number" class="form-control" formControlName="interes">
+							</div>
+							<label for="seguroCom" class="col-2 col-form-label mt-2">Seguro:</label>
+							<div class="col-4 mt-2">
+								<input type="number" class="form-control" formControlName="seguro">
+							</div>
+							<label for="diasCom" class="col-2 col-form-label mt-2">Dias:</label>
+							<div class="col-10 mt-2">
+								<input type="number" class="form-control" formControlName="dias">
+							</div>
+							<br>
+							<hr>
+							<label for="fechaPresta" class="col-4 col-form-label mt-5">Fecha Prestado:</label>
+							<div class="col-8 mt-5">
+								<input type="date" class="form-control" formControlName="fechaPrestado">
+							</div>
+						</div>					
+					</form>
+					<label for="DiaTotal">Dias totales:</label>
+					<div class="alert alert-primary">
+						{{ totalDias(calcuInteres.value.fechaPrestado) - 1 }} Días.
+					</div>
 				</div><!-- primera columna -->
 			
-				<div class="col-6">
+				<div class="col-6 animate__animated animate__fadeInDown">
 					<div class="form-grop">
 						<label for="interSerCom">Interes y Seguro</label>
 						<div class="alert alert-secondary">

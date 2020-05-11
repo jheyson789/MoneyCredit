@@ -76,9 +76,8 @@ export class ClientesComponent implements OnInit {
   }
   guardar(){
     // this.forma.value.codigoCliente = cod;
-    this.genPdf = true;
-    console.log(this.forma.value);
-    console.log(this.servicioPrestamo.crearPrestamo(this.forma.value));
+    console.log(this.forma.invalid);
+
     Swal.fire({
       title:'Espere',
       text: 'Guardando información',
@@ -87,6 +86,18 @@ export class ClientesComponent implements OnInit {
       timerProgressBar: true,
       allowOutsideClick: false
     });
+    Swal.showLoading();
+    if ( this.forma.invalid ) {
+      return Object.values( this.forma.controls ).forEach( control => {
+        
+        if ( control instanceof FormGroup ) {
+          Object.values( control.controls ).forEach( control => control.markAsTouched() );
+        } else {
+          control.markAsTouched();
+        }
+        
+      });  
+    }
 
     this.servicioPrestamo.crearPrestamo(this.forma.value).subscribe(
       resp => {
@@ -95,6 +106,7 @@ export class ClientesComponent implements OnInit {
           text: 'Se guardo correctamente',
           icon: 'success'
         });
+        this.genPdf = true;
       },
       error => {
         Swal.fire({
@@ -117,8 +129,7 @@ export class ClientesComponent implements OnInit {
   }
 
   quitarPrenda(i: number) {
-    const quitar = this.forma.value.prendas;
-    quitar.pop();
+    this.prendas.removeAt(i);
   }
 
   generarCodigo(length: number) {
@@ -156,6 +167,31 @@ export class ClientesComponent implements OnInit {
       .set(options)
       .output('dataurlnewwindow');
     
+  }
+  resetear() {
+    window.location.reload();
+  }
+
+  get nombreNoValido() {
+    return this.forma.get('nombre').invalid && this.forma.get('nombre').touched
+  }
+  get carnetInvalido() {
+    return this.forma.get('carnetIdentidad').invalid && this.forma.get('carnetIdentidad').touched
+  }
+  get capitalInvalido() {
+    return this.forma.get('capital').invalid && this.forma.get('capital').touched
+  }
+  get interesInvalido() {
+    return this.forma.get('interes').invalid && this.forma.get('interes').touched
+  }
+  get seguroInvalido() {
+    return this.forma.get('seguro').invalid && this.forma.get('seguro').touched
+  }
+  get codigoCliInvalido() {
+    return this.forma.get('codigoCliente').invalid && this.forma.get('codigoCliente').touched
+  }
+  get codigoConInvalido() {
+    return this.forma.get('codigoContrato').invalid && this.forma.get('codigoContrato').touched
   }
 
 
