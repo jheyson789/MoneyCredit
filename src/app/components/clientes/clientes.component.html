@@ -132,7 +132,8 @@
         <i class="fa fa-save"></i>
         Guardar
       </button>
-      <button *ngIf="genPdf" class="btn btn-info ml-3 mt-3 animate__animated animate__fadeInLeft" type="button" (click)="abrirPDF()">
+      <button *ngIf="genPdf" class="btn btn-info ml-3 mt-3 animate__animated animate__fadeInLeft" type="button"
+      (click)="generarPdf()">
         <i class="fa fa-file-pdf"></i>
         Generar PDF
       </button>
@@ -164,12 +165,12 @@
       <tbody>
         <tr>
           <td>Cliente: {{ forma.value.codigoCliente }} </td>
-          <td colspan="2">Nombre: {{ forma.value.nombre | uppercase }} </td>
+          <td colspan="2">Fecha de vencimiento : {{ restar() | date:'dd/MM/yyyy' }}</td>
           <td>CI: {{ forma.value.carnetIdentidad }} {{ forma.value.extension }} </td>
         </tr>
         <tr>
           <td>Moneda : bolivianos</td>
-          <td colspan="3">Fecha de vencimiento : {{ restar() | date:'dd/MM/yyyy' }} </td>
+          <td colspan="3"> Nombre: {{ forma.value.nombre | uppercase }} </td>
         </tr>
         <tr>
           <td>Capital prestado: {{ forma.value.capital }} </td>

@@ -7,7 +7,6 @@ import { PrestamosService } from '../../services/prestamos.service';
 import Swal from 'sweetalert2';
 
 
-
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -145,14 +144,8 @@ export class ClientesComponent implements OnInit {
    
 
   
-  generarPdf() {
-    // let DATA = this.pruebapdf.nativeElement;
-    // let doc = new jsPDF('p','pt', 'a5');
-    // doc.fromHTML(DATA.innerHTML,15,15);
-    // doc.output('dataurlnewwindow')
-    
-  }
-  abrirPDF(){
+ 
+  generarPdf(){
     const options = {
       margin: 2,
       filename: `${this.forma.value.carnetIdentidad}.pdf`,
