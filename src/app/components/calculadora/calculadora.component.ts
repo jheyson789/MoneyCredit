@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-calculadora',
@@ -10,7 +10,6 @@ import * as moment from 'moment';
 export class CalculadoraComponent implements OnInit {
   
   calcuJoyas: FormGroup;
-  calcuInteres: FormGroup;
   calcuDias: FormGroup;
   
 
@@ -22,7 +21,7 @@ export class CalculadoraComponent implements OnInit {
 
   ngOnInit(): void {
     this.formCalcularJoyas();
-    this.formCalcularInteres();
+    
   }
 
   formCalcularJoyas() {
@@ -32,47 +31,12 @@ export class CalculadoraComponent implements OnInit {
     })
   }
 
-  formCalcularInteres() {
-    this.calcuInteres = this.fb.group({
-      monto: ['', Validators.required],
-      interes: [3, Validators.required],
-      seguro: [3.5, Validators.required],
-      dias:['',Validators.required],
-      fechaPrestado: ['']
-    })
-  }
-
-  totalDias(fechaPres) {
-    var fechaActual = moment();
-    var fecha = moment(fechaPres);
-    var diferencia = fechaActual.diff(fecha, 'days');
-    // var fecha = new Date();
-    // fecha.setDate(fecha.getDate() + 30);
-    // return fecha;
-    return diferencia;
-  }
   
-  intereSeguro( ) {
-    let monto = this.calcuInteres.value.monto;
-    let interes = this.calcuInteres.value.interes;
-    let seguro = this.calcuInteres.value.seguro;
-    let dias = this.calcuInteres.value.dias;
 
-    if ( dias <= 15) {
-      let total = (monto*((interes+seguro)/100))/30;
-      return total * 15;
-      
-    } else {
-      let total = (monto*((interes+seguro)/100))/30;
-      return total * dias;
-    }
-  }
+  
+  
 
-  totalPagar() {
-    let interes = this.intereSeguro();
-    let monto = this.calcuInteres.value.monto;
-    return monto + interes;
-  }
+  
 
   calcularNormal( peso: number, kilate: string ) {
     if ( peso < 10.1 ) {
