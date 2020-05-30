@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrestamosService } from '../../services/prestamos.service';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-inicio',
@@ -13,6 +14,7 @@ export class InicioComponent implements OnInit {
   public datos = [];
   public estado = false;
   public eliminar = false;
+  public test = [];
 
   constructor(
     private servicioPrestamo : PrestamosService
@@ -21,12 +23,14 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
     this.mostrarPrestamos();
   }
+  
 
   mostrarPrestamos() {
     this.servicioPrestamo.getProjects().subscribe(
       response => {
         if(response.prestamos) {
           this.datos = response.prestamos;
+          console.log(this.datos);
         }
         
         if( this.datos.length === 0 ) {
@@ -49,7 +53,7 @@ export class InicioComponent implements OnInit {
 
   }
 
-  eliminarPrestamo(id: String, i: number) {
+  eliminarPrestamo(id: String, i: number, idPago: String) {
     Swal.fire({
       title: '¿Estas Seguro?',
       text: `Estas seguro que desea eliminar de los prestamos`,
@@ -75,10 +79,18 @@ export class InicioComponent implements OnInit {
             text: `No se encontro el id ${id}`
           })
         }
-      )
+      );
+      this.servicioPrestamo.eliminarPagos(idPago).subscribe();
       }
     })
 
+  }
+  expiro(fechaPres: any){
+    var fechaActual = moment();
+    var fecha = moment(fechaPres);
+    var diferencia = fechaActual.diff(fecha, 'days');
+    if(diferencia >= 0) return true;
+    if(diferencia < 0) return false;
   }
 
 

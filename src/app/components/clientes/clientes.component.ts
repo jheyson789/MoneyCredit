@@ -98,7 +98,8 @@ export class ClientesComponent implements OnInit {
       });  
     }
 
-    this.servicioPrestamo.crearPrestamo(this.forma.value).subscribe(
+    // this.servicioPrestamo.crearPrestamo(this.forma.value).subscribe(
+    this.servicioPrestamo.guardarPrestamo(this.forma.value).subscribe(
       resp => {
         Swal.fire({
           title: this.forma.value.nombre,

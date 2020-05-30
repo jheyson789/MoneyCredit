@@ -14,6 +14,8 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { CalculadoraComponent } from './components/calculadora/calculadora.component';
 import * as jsPDF from 'jspdf';
 import { EditarComponent } from './components/editar/editar.component';
+import { PagoComponent } from './components/pago/pago.component';
+import { InteresDiaComponent } from './components/interes-dia/interes-dia.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { EditarComponent } from './components/editar/editar.component';
     InicioComponent,
     ClientesComponent,
     CalculadoraComponent,
-    EditarComponent
+    EditarComponent,
+    PagoComponent,
+    InteresDiaComponent
   ],
   imports: [
     BrowserModule,

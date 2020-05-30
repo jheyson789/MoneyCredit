@@ -50,5 +50,8 @@ export class PrestamosService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.put(this.url+'/pago-efectuado/'+formulario._id, formulario, {headers: headers});
   }
-
+  eliminarPagos(id: String): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this._http.delete(this.url+'/eliminar-pago/'+id, {headers: headers});
+  }
 }

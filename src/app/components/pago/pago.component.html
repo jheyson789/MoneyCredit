@@ -1,0 +1,94 @@
+<div class="container mt-5">
+  <h1 class="animate__animated animate__fadeIn">Datos del Cliente</h1>
+  <table class="table table-hover text-center mb-5 animate__animated animate__fadeInRight">
+    <thead>
+      <tr>
+        <th scope="col">Nombre: {{ datos.nombre | uppercase }}</th>
+        <th scope="col">CI: {{ datos.carnetIdentidad }} </th>
+        <th scope="col">Teléfono: {{ datos.telefono }} </th>
+        <th scope="col">Celular: {{ datos.celular }} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Capital: {{ datos.capital }} </td>
+        <td>Interes: {{ datos.interes }} </td>
+        <td>Seguro: {{ datos.seguro }} </td>
+        <td>Fecha contrato: {{ datos.fechaActual | date:"dd/MM/yyyy" }} </td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  <h1 class="animate__animated animate__fadeIn">Pagos Realizados</h1>
+  <table class="table text-center animate__animated animate__fadeInLeft mt-2 mb-3">
+    <thead>
+      <tr>
+        <th scope="col">Fecha de Pago</th>
+        <th scope="col">Saldo Anterior</th>
+        <th scope="col">Interes Pagado</th>
+        <th scope="col">Amortización</th>
+        <th scope="col">Saldo Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pago of totalPagos.pagos; let i = index">
+        <td> {{pago.fechaPago | date:"dd/MM/yyyy"}} </td>
+        <td> {{pago.saldoAnterior}} </td>
+        <td> {{pago.interes}} </td>
+        <td> {{pago.pago}} </td>
+        <td> {{pago.saldoTotal}} </td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-outline-info" data-toggle="modal" data-target="#calculadoraDia">
+    calculadora de Interes
+  </button>
+  
+  <div class="modal fade" id="calculadoraDia" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="titulo" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="titulo">Calculadora de Interes por Días</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-interes-dia></app-interes-dia>
+        </div>
+      </div>
+    </div>
+  </div>
+ <form class="mt-5 text-center animate__fadeInDown animate__animated" autocomplete="off" [formGroup]="forma" (ngSubmit)="guardarPago()" >
+   <div class="form-row">
+     <div class="col-md-2">
+       <label>Fecha Actual</label>
+       <input type="date" class="form-control" formControlName="fechaPago">
+     </div>
+     <div class="col-md-2">
+       <label>Saldo Anterior</label>
+       <input type="text" class="form-control" placeholder="Último saldo" formControlName="saldoAnterior">
+     </div>
+     <div class="col-md-2">
+       <label>Pago Interes</label>
+       <input type="text" class="form-control" placeholder="Deuda del Interes" formControlName="interes">
+     </div>
+     <div class="col-md-2">
+       <label>Amortización del Capital</label>
+       <input type="text" class="form-control" placeholder="Pago al capital" formControlName="pago">
+     </div>
+     <div class="col-md-2">
+       <label>Saldo Total</label>
+       <input type="text" class="form-control" placeholder="Pago Total" formControlName="saldoTotal">
+     </div>
+     <div class="col-md-2">
+       <button class="btn btn-success" type="submit">
+        <i class="far fa-save"></i>
+        Guardar
+       </button>
+     </div>
+   </div>
+ </form>
+
+</div>
